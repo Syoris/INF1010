@@ -10,16 +10,8 @@
 
 #include <vector>
 
-class GestionnaireUtilisateurs {
+class GestionnaireUtilisateur: public GestionnaireGenerique<Utilisateur*, double, map<Utilisateur*,double>, AjouterUtilisateur> {
 public:
-	Utilisateur* getUtilisateurParIndex(int i) const;
-	vector<Utilisateur*> getUtilisateurs() const;
-	int getNombreUtilisateurs() const;
-	int getIndexDe(Utilisateur* utilisateur) const;
 
-	
-	GestionnaireUtilisateurs& ajouterUtilisateur(Utilisateur* utilisateur);
 
-private:
-	vector<Utilisateur*> utilisateurs_;
 };
