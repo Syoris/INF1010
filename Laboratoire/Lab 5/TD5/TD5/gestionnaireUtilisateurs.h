@@ -10,7 +10,7 @@
 #include "gestionnaireGenerique.h"
 #include <vector>
 
-class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*,double>, map<Utilisateur*,double>, AjouterUtilisateur> {
+class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*, double>, map<Utilisateur*,double>, AjouterUtilisateur> { 
 public:
 	vector<double> getComptes() const;
 	bool estExistant(Utilisateur* utilisateur) const;
