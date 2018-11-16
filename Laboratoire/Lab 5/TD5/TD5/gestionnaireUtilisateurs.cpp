@@ -7,55 +7,53 @@
 #include "gestionnaireUtilisateurs.h"
 #include "utilisateurPremium.h"
 #include "utilisateurRegulier.h"
+#include "algorithm"
+#include "functional"
+#include "foncteur.h"
+using namespace std::placeholders;
 
-Utilisateur* GestionnaireUtilisateurs::getUtilisateurParIndex(int i) const
-{
-	return utilisateurs_[i];
+vector<double> GestionnaireUtilisateurs::getComptes() const {
+	vector<double> comptes;
+	for (auto it = getConteneur().begin(); it != getConteneur().end(); it++)
+		comptes.push_back(it->second);
 }
 
-vector<Utilisateur*> GestionnaireUtilisateurs::getUtilisateurs() const
-{
-	return utilisateurs_;
+bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
+
 }
 
-int GestionnaireUtilisateurs::getNombreUtilisateurs() const
-{
-	return utilisateurs_.size();
+void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* utilisateur, double montant) {
+
 }
 
-int GestionnaireUtilisateurs::getIndexDe(Utilisateur * utilisateur) const
-{
-	int index = -1;
-	for (int i = 0; i < utilisateurs_.size(); i++) {
-		if (utilisateurs_[i] == utilisateur) {
-			index = i;
-			break;
-		}
-	}
-	return index;
+pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
+	
+	pair<Utilisateur*, double> paireMax = make_pair(getConteneur().begin(), getConteneur().begin()->second);
+
+	for (auto it = (getConteneur().begin()+1); it != getConteneur().end(); it++)
+		if (it->second > paireMax.second)
+			paireMax = (it, it->second);
+	return paireMax;
 }
 
-GestionnaireUtilisateurs& GestionnaireUtilisateurs::ajouterUtilisateur(Utilisateur * utilisateur)
-{
-	UtilisateurRegulier* utilisateurRegulier = dynamic_cast<UtilisateurRegulier*>(utilisateur);
-	UtilisateurPremium* utilisateurPremium = dynamic_cast<UtilisateurPremium*>(utilisateur);
+pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
+	
+	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin(), getConteneur().begin()->second);
 
-	if (utilisateurRegulier != nullptr) {
-		if (!utilisateurRegulier->getPossedeGroupe()) {
-			utilisateurRegulier->setPossedeGroupe(true);
-		}
-		else {
-			cout << "Erreur : L'utilisateur " << utilisateur->getNom() << " n'est pas un utilisateur premium et est deja dans un groupe." << endl;
-			return *this;
-		}
-	}
-	else {
-		if (utilisateurPremium != nullptr && utilisateurPremium->getJoursRestants() <= 0) {
-			cout << "Erreur : L'utilisateur " << utilisateur->getNom() << " doit renouveler son abonnement premium" << endl;
-			return *this;
-		}
-	}
+	for (auto it = (getConteneur().begin()+1); it != getConteneur().end(); it++)
+		if (it->second < paireMin.second)
+			paireMin = (it, it->second);
+	return paireMin;
+}
 
-	utilisateurs_.push_back(utilisateur);
-	return *this;
+Utilisateur* GestionnaireUtilisateurs::getUtilisateurSuivant(Utilisateur* utilisateur, double montant) const {
+	return find_if(getConteneur().begin(), getConteneur().end(), bind(equal_to<Utilisateur*>(), _1, utilisateur));
+}
+
+vector<pair<Utilisateur*, double>> GestionnaireUtilisateurs::getUtilisateursEntre(double borneInf, double borneSup) const {
+	return copy_if(getConteneur().begin(), getConteneur().end(), FoncteurIntervalle(borneInf, borneSup))
+}
+
+GestionnaireUtilisateurs& GestionnaireUtilisateurs::setCompte(pair<Utilisateur*, double> p) {
+
 }

@@ -7,11 +7,17 @@
 #pragma once
 
 #include "utilisateur.h"
-
+#include "gestionnaireGenerique.h"
 #include <vector>
 
-class GestionnaireUtilisateur: public GestionnaireGenerique<Utilisateur*, double, map<Utilisateur*,double>, AjouterUtilisateur> {
+class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, double, map<Utilisateur*,double>, AjouterUtilisateur> {
 public:
-
-
+	vector<double> getComptes() const;
+	bool estExistant(Utilisateur* utilisateur) const;
+	void mettreAJourComptes(Utilisateur* utilisateur , double montant);
+	pair<Utilisateur*, double>&getMax() const;
+	pair<Utilisateur*, double>&getMin() const;
+	Utilisateur* getUtilisateurSuivant(Utilisateur* utilisateur, double montant) const;
+	vector<pair<Utilisateur*, double>> getUtilisateursEntre(double borneInf, double borneSup) const;
+	GestionnaireUtilisateurs& setCompte(pair<Utilisateur*, double> p);
 };
