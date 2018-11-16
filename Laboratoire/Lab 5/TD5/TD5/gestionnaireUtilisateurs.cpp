@@ -1,7 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - gestionnaireUtilisateurs.cpp
 * Date: 4 novembre 2018
-* Auteur: Ryan Hardie
+* Auteur: Ryan Hardi
 *******************************************/
 
 #include "gestionnaireUtilisateurs.h"
@@ -14,44 +14,61 @@ using namespace std::placeholders;
 
 vector<double> GestionnaireUtilisateurs::getComptes() const {
 	vector<double> comptes;
-	for (auto it = getConteneur().begin(); it != getConteneur().end(); it++)
+	for (map<Utilisateur*, double>::iterator it = getConteneur().begin(); it != getConteneur().end(); it++)
 		comptes.push_back(it->second);
+	return comptes;
 }
 
 bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
-
+	//??
 }
 
-void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* utilisateur, double montant) {
+void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
 
 }
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
 	
-	pair<Utilisateur*, double> paireMax = make_pair(getConteneur().begin(), getConteneur().begin()->second);
+	if (!getConteneur().empty()) {
+		pair<Utilisateur*, double> paireMax = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
+		for (map<Utilisateur*,double>::iterator  it = getConteneur().begin(); it != getConteneur().end(); it++)
+			if (it->second > paireMax.second) {
+				paireMax.first = it->first;
+				paireMax.second = it->second;
+			}
 
-	for (auto it = (getConteneur().begin()+1); it != getConteneur().end(); it++)
-		if (it->second > paireMax.second)
-			paireMax = (it, it->second);
-	return paireMax;
+		return paireMax;
+	}
+	else
+		cout << "Erreur GestionnaireUtilisateur::getMax(). Le conteneur ne contient aucun utilisateur." << endl;
 }
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 	
-	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin(), getConteneur().begin()->second);
+	if (!getConteneur().empty()) {
+		pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
+		for (map<Utilisateur*, double>::iterator it = (getConteneur().begin()); it != getConteneur().end(); it++)
+			if (it->second > paireMin.second) {
+				paireMin.first = it->first;
+				paireMin.second = it->second;
+			}
 
-	for (auto it = (getConteneur().begin()+1); it != getConteneur().end(); it++)
-		if (it->second < paireMin.second)
-			paireMin = (it, it->second);
-	return paireMin;
+		return paireMin;
+	}
+	else
+		cout << "Erreur GestionnaireUtilisateur::getMax(). Le conteneur ne contient aucun utilisateur." << endl;
 }
 
 Utilisateur* GestionnaireUtilisateurs::getUtilisateurSuivant(Utilisateur* utilisateur, double montant) const {
-	return find_if(getConteneur().begin(), getConteneur().end(), bind(equal_to<Utilisateur*>(), _1, utilisateur));
+	map<Utilisateur*,double>::iterator it = find_if(getConteneur().begin(), getConteneur().end(), bind(equal_to<Utilisateur*>(), _1, utilisateur));
+	it++;
+	return it->first;
 }
 
 vector<pair<Utilisateur*, double>> GestionnaireUtilisateurs::getUtilisateursEntre(double borneInf, double borneSup) const {
-	return copy_if(getConteneur().begin(), getConteneur().end(), FoncteurIntervalle(borneInf, borneSup))
+	vector<pair<Utilisateur*, double>> vecteurRetour;
+	copy_if(getConteneur().begin(), getConteneur().end(), back_inserter(vecteurRetour), FoncteurIntervalle(borneInf, borneSup));
+	return vecteurRetour;
 }
 
 GestionnaireUtilisateurs& GestionnaireUtilisateurs::setCompte(pair<Utilisateur*, double> p) {

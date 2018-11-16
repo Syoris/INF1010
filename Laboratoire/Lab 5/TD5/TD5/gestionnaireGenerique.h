@@ -16,7 +16,7 @@ public:
 		f(t);
 	};
 	int getNombreElements() const {
-		return conteneur_size();
+		return conteneur_.size();
 	};
 	D getElementParIndex(int i) const {
 		return conteneur_[i];
