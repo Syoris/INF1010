@@ -1,0 +1,12 @@
+Questions 1:
+1
+
+Question 2:
+Le vecteur &b sera utilise comme une variable de type A* puisque la methode A::f() n'est pas virtuelle
+
+Question 3:
+1- On peut enlever le virtual de la methode B::f() afin qu'un objet de type C soit traite comme un objet de type B
+2- On peut forcer l'utilisation de la methode B::f() en utilisant  v[0]->B::f() plutôt que v[0]->f()
+
+Question 4:
+La classe Transfert est une classe abstraite; c'est un classe qui ne sert qu'à établir les méthodes héritées et certains attributs communs aux classes dérivées

@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\charles\skydrive\documents\polytechnique\session 3\programmation\laboratoire\lab 4\tp4\tp4\main.cpp(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\charles\skydrive\documents\polytechnique\session 3\programmation\laboratoire\lab 4\tp4\tp4\main.cpp(224): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  TP4.vcxproj -> C:\Users\Charles\SkyDrive\Documents\Polytechnique\Session 3\Programmation\Laboratoire\Lab 4\TP4\Debug\TP4.exe

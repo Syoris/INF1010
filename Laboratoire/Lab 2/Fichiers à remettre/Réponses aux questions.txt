@@ -1,0 +1,11 @@
+1894544 et 1899303
+
+Question 1 : 
+Par défaut, le constructeur par copie et l'opérateur '=' font une "shallow copy" de l'objet. Ceci fait la copie de l'objet attribut par attribut, bit par bit. 
+Il est possible que deux pointeurs en attribut pointent vers le même espace mémoire, ceci peut devenir problématique. Pour éviter cela, on peut définir le constructeur par copie
+et l'opérateur '=' pour qu'une "deep copy" soit effectué. Lors de la "deep copy", des nouveaux pointeurs seront créé pour éviter, les problèmes de la "shallow copy".
+
+Question 2 : 
+La différence entre l'opérateur '=' et le constructeur par copie réside dans le fait que le constructeur par copie crée un nouvel objet
+avec les mêmes attributs qu'un autre objet alors que l'opérateur '=' fait seulement copier les attributs d'un objet dans un autre objet
+existant.

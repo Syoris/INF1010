@@ -1,0 +1,13 @@
+﻿  utilisateur.cpp
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\utilisateur.cpp(34): warning C4018: '<': signed/unsigned mismatch
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\utilisateur.cpp(65): warning C4018: '<': signed/unsigned mismatch
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\utilisateur.cpp(67): error C2039: 'afficherDepense': is not a member of 'Depense'
+  c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\depense.h(15): note: see declaration of 'Depense'
+  main.cpp
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\main.cpp(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\main.cpp(51): error C2679: binary '+=': no operator found which takes a right-hand operand of type 'Utilisateur *' (or there is no acceptable conversion)
+  c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\groupe.h(47): note: could be 'Groupe &Groupe::operator +=(const Utilisateur &)'
+  c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\main.cpp(51): note: while trying to match the argument list '(Groupe, Utilisateur *)'
+  groupe.cpp
+c:\users\charl\onedrive\documents\polytechnique\session 3\programmation\laboratoire\lab 2\td2\groupe.cpp(36): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
