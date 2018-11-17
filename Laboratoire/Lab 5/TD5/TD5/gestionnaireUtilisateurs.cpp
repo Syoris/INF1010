@@ -15,6 +15,22 @@
 #include "foncteur.h"
 using namespace std::placeholders;
 
+GestionnaireUtilisateurs::GestionnaireUtilisateurs(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
+	for_each(gestionnaireUtilisateurs.conteneur_.begin(), gestionnaireUtilisateurs.conteneur_.end(), AjouterUtilisateur(conteneur_));
+}
+
+GestionnaireUtilisateurs::~GestionnaireUtilisateurs() {
+	for (map<Utilisateur*, double>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
+		delete it->first;
+}
+
+GestionnaireUtilisateurs& GestionnaireUtilisateurs::operator=(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
+
+}
+
+
+
+
 vector<double> GestionnaireUtilisateurs::getComptes() const {
 	vector<double> comptes;
 	for (map<Utilisateur*,double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
@@ -38,7 +54,7 @@ void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double m
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
 	
-	//Construction d'une paire contenant les premiers éléments de la liste
+	//Construction d'une paire contenant les premiers ï¿½lï¿½ments de la liste
 	pair<Utilisateur*, double> paireMax = make_pair(conteneur_.begin()->first, conteneur_.begin()->second);
 	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
 		if (it->second > paireMax.second) {
@@ -52,7 +68,7 @@ pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 	
-	//Construction d'une paire contenant les premiers éléments de la liste
+	//Construction d'une paire contenant les premiers ï¿½lï¿½ments de la liste
 	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
 	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
 		if (it->second > paireMin.second) {

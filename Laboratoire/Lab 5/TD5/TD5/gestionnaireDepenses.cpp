@@ -3,6 +3,24 @@
 #include <algorithm>
 #include <functional>
 
+GestionnaireDepenses::GestionnaireDepenses(const GestionnaireDepenses& gestionnaireDepenses){
+	for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
+}
+
+GestionnaireDepenses::~GestionnaireDepenses() {
+	for (vector<Depense*>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
+		delete *it;
+}
+
+GestionnaireDepenses& GestionnaireDepenses::operator=(const GestionnaireDepenses& gestionnaireDepenses) {
+	if (this != &gestionnaireDepenses) {
+		for (vector<Depense*>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
+			delete *it;
+		this->conteneur_.clear();
+		for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
+	}
+	return *this;
+}
 
 double GestionnaireDepenses::getTotalDepenses() const
 {

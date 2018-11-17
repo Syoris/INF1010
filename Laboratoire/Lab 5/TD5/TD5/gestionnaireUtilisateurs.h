@@ -12,6 +12,14 @@
 
 class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*, double>, map<Utilisateur*,double>, AjouterUtilisateur> { 
 public:
+	//constructeur
+	GestionnaireUtilisateurs(const GestionnaireUtilisateurs&);
+	//destructeur
+	~GestionnaireUtilisateurs();
+	//surcharge de l'operator=
+	GestionnaireUtilisateurs& operator=(const GestionnaireUtilisateurs&);
+
+
 	vector<double> getComptes() const;
 	bool estExistant(Utilisateur* utilisateur) const;
 	void mettreAJourComptes(Utilisateur* utilisateur , double montant);

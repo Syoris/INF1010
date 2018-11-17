@@ -12,7 +12,7 @@
 /*
 	Foncteur AjouterDepense
 
-	Méthode :
+	Mï¿½thode :
 	Constructeur
 	vector<Depense*>& operator()();
 
@@ -23,7 +23,7 @@ class AjouterDepense {
 public:
 	AjouterDepense(vector<Depense*>& conteneur) :conteneur_(conteneur) {};
 	vector<Depense*>& operator()(Depense* depense) {
-		conteneur_.push_back(depense);
+		conteneur_.push_back(new Depense(*depense));
 		return conteneur_;
 	};
 private:
@@ -34,7 +34,7 @@ private:
 /*
 Foncteur AjouterUtilisateur
 
-Méthode :
+Mï¿½thode :
 Constructeur
 map<Utilisateur*, double>& operator()();
 
@@ -57,7 +57,7 @@ private:
 /*
 Foncteur FoncteurIntervalle
 
-Méthode :
+Mï¿½thode :
 Constructeur
 bool operator()();
 
