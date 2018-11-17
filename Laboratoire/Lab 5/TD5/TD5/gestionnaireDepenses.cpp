@@ -3,10 +3,17 @@
 #include <algorithm>
 #include <functional>
 
+// Constructeurs
+GestionnaireDepenses::GestionnaireDepenses():GestionnaireGenerique() {
+
+}
+
 GestionnaireDepenses::GestionnaireDepenses(const GestionnaireDepenses& gestionnaireDepenses){
 	for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
 }
 
+
+// TODO : Vérifier si on a besoin de delete un vecteur? Le delete devrait se faire ou le new est fait
 GestionnaireDepenses::~GestionnaireDepenses() {
 	for (vector<Depense*>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
 		delete *it;

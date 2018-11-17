@@ -9,11 +9,17 @@
 
 class GestionnaireDepenses : public GestionnaireGenerique<Depense*, Depense*, vector<Depense*>,AjouterDepense> {
 public:
-	//constructeur par copie
+	// Constructeurs
+	GestionnaireDepenses();
+	//constructeur par copie //TODO Nécessaire?
 	GestionnaireDepenses(const GestionnaireDepenses&);
-	//destructeur 
+
+	// Destructeur 
 	~GestionnaireDepenses();
-	//surcharge de l'operator=
+
+	// Surcharge de l'operator=
 	GestionnaireDepenses& operator=(const GestionnaireDepenses&);
+
+	// Méthode d'accès
 	double getTotalDepenses() const;
 };

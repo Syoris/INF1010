@@ -15,6 +15,10 @@
 #include "foncteur.h"
 using namespace std::placeholders;
 
+
+//Constructeurs
+GestionnaireUtilisateurs::GestionnaireUtilisateurs() :GestionnaireGenerique() {};
+
 GestionnaireUtilisateurs::GestionnaireUtilisateurs(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
 	for_each(gestionnaireUtilisateurs.conteneur_.begin(), gestionnaireUtilisateurs.conteneur_.end(), AjouterUtilisateur(conteneur_));
 }
@@ -48,6 +52,7 @@ bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
 	return existe;
 }
 
+// TODO
 void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
 
 }
@@ -92,5 +97,5 @@ vector<pair<Utilisateur*, double>> GestionnaireUtilisateurs::getUtilisateursEntr
 }
 
 GestionnaireUtilisateurs& GestionnaireUtilisateurs::setCompte(pair<Utilisateur*, double> p) {
-
+	conteneur_[p.first] = p.second;
 }

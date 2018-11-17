@@ -23,7 +23,7 @@ class AjouterDepense {
 public:
 	AjouterDepense(vector<Depense*>& conteneur) :conteneur_(conteneur) {};
 	vector<Depense*>& operator()(Depense* depense) {
-		conteneur_.push_back(new Depense(*depense));
+		conteneur_.push_back(depense);
 		return conteneur_;
 	};
 private:

@@ -5,8 +5,6 @@
 *******************************************/
 
 #include "groupe.h"
-#include "foncteur.h"
-#include <algorithm>
 
 // Constructeurs
 Groupe::Groupe() {
@@ -20,6 +18,7 @@ Groupe::Groupe(const string& nom) : nom_(nom) {
 	gestionnaireUtilisateurs_ = new GestionnaireUtilisateurs();
 }
 
+// TODO
 Groupe::~Groupe() {
 	vector<Depense*> depenses = gestionnaireDepenses_->getDepenses();
 	for (int i = 0; i < depenses.size(); i++) {
@@ -89,26 +88,30 @@ void Groupe::setNom(const string& nom) {
 // TODO : À modifier :
 Groupe& Groupe::ajouterDepense(double montant, Utilisateur* payePar, const string& nom, const string& lieu)
 {
-	// Trouver l'index de l'auteur de la depense
-	int indexPayePar = gestionnaireUtilisateurs_->getIndexDe(payePar);
-
-	if (indexPayePar == -1) {
+	
+	// S'assurer que l'utilisateur est dans le groupe
+	if (!gestionnaireUtilisateurs_->estExistant) {
 		return *this;
 	}
 
+	//Créer une nouvelle dépense
 	Depense* depense = new Depense(nom, montant, lieu);
 
-	// Modifié :
-	// depenses_.push_back(depense);
+	// Ajouter la dépense au gestionnaireDepenses_
+	AjouterDepense(gestionnaireDepenses_->getConteneur);
 
-	// Ajouté :
-	gestionnaireDepenses_->ajouterDepense(depense);
-
+	// Ajouter la dépense à l'utilisateur qui a payé
 	*payePar += depense;
 
+	
+
 	// Mise a jour des comptes
-	double montantReparti = depense->getMontant() / gestionnaireUtilisateurs_->getNombreUtilisateurs();
-	comptes_[indexPayePar] += depense->getMontant() - montantReparti;
+	double montantReparti = depense->getMontant() / gestionnaireUtilisateurs_->getConteneur().size();
+	
+	pair<Utilisateur*,double> paire = make_pair(payepar, depense->getMontant() - montantReparti);
+
+	copieMap[payePar] += depense->getMontant() - montantReparti;
+
 	for (int i = 0; i < gestionnaireUtilisateurs_->getNombreUtilisateurs(); i++) {
 		if (i != indexPayePar) {
 			comptes_[i] -= montantReparti;

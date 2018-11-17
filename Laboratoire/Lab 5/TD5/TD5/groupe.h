@@ -9,12 +9,14 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "depense.h"
 #include "utilisateurPremium.h"
 #include "utilisateurRegulier.h"
 #include "transfertInterac.h"
 #include "transfertPaypal.h"
+#include "foncteur.h"
 
 #include "gestionnaireDepenses.h"
 #include "gestionnaireUtilisateurs.h"
@@ -26,6 +28,7 @@ public:
 	// Constructeurs
 	Groupe();
 	Groupe(const string& nom);
+	Groupe(const Groupe& groupe);
 
 	// Destructeur
 	~Groupe();
