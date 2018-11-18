@@ -1,15 +1,13 @@
 #pragma once
 
-#include <functional>
-
-#include "gestionnaireGenerique.h"
-
 #include "depense.h"
 #include "utilisateur.h"
-
+#include "gestionnaireGenerique.h"
 #include "foncteur.h"
+#include <algorithm>
+#include <vector>
 
-class GestionnaireDepenses : public GestionnaireGenerique<Depense*, Depense*, vector<Depense*>, AjouterDepense> {
+class GestionnaireDepenses : public GestionnaireGenerique<Depense*, Depense*, vector<Depense*>,AjouterDepense> {
 public:
 	// Constructeurs
 	GestionnaireDepenses();

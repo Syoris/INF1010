@@ -36,12 +36,10 @@ public:
 	// Methodes d'acces
 	string getNom() const;
 	vector<Transfert*> getTransferts() const;
-
-	// TODO : À modifier :
 	vector<double> getComptes() const;
 	double getTotalDepenses() const;
 	vector<Depense*> getDepenses() const;
-	vector<Utilisateur*> getUtilisateurs() const;
+	map<Utilisateur*, double> getUtilisateurs() const;
 
 	// Ajouté :
 	GestionnaireUtilisateurs* getGestionnaireUtilisateurs();
@@ -63,9 +61,6 @@ public:
 private:
 	string nom_;
 	vector<Transfert*> transferts_;
-
-	// TODO : À modifier :
-	vector<double> comptes_;
 
 	// Ajouté :
 	GestionnaireUtilisateurs* gestionnaireUtilisateurs_;

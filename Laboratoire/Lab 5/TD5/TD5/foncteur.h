@@ -3,7 +3,7 @@
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardie
 *******************************************/
-#pragma once
+
 #include <map>
 #include <utility>
 
@@ -45,7 +45,8 @@ class AjouterUtilisateur {
 public:
 	AjouterUtilisateur(map<Utilisateur*, double>& conteneur) :conteneur_(conteneur) {};
 	map<Utilisateur*, double>& operator()(Utilisateur* utilisateur) {
-		conteneur_.insert(pair<Utilisateur*, double>(utilisateur, 0));
+		pair<Utilisateur*, double> pair = make_pair(utilisateur, 0);
+		conteneur_.insert(pair);
 		return conteneur_;
 	}
 private:

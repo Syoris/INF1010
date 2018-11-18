@@ -3,10 +3,16 @@
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardi
 *******************************************/
-#include <functional>
-#include <iterator>
 #include "gestionnaireUtilisateurs.h"
+#include "utilisateurPremium.h"
+#include "utilisateurRegulier.h"
 
+//#include "gestionnaireUtilisateurs.h"
+//#include "utilisateurPremium.h"
+//#include "utilisateurRegulier.h"
+//#include "algorithm"
+#include "functional"
+#include "foncteur.h"
 using namespace std::placeholders;
 
 
@@ -37,24 +43,24 @@ vector<double> GestionnaireUtilisateurs::getComptes() const {
 }
 
 bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
-	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++) {
+	bool existe = false;
+	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end() && !existe; it++) {
 		if ((*it).first == utilisateur) {
-			return true;
+			existe = true;
 		}
 	}
-	return false;
+	return existe;
 }
 
 // TODO
 void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
+	double montantReparti = montant/getNombreElements();
 	
-	//On trouve le montant reparti.
-	double montantReparti = montant / getNombreElements();
-	//On ajoute le montant au compte de l'utilisateur qui a payé.
+	//On ajoute le montant au compte de l'utilisateur qui a payé
 	conteneur_[payePar] += montant;
-	//On soustrait le montant reparti à tous les comptes.
-	for (map<Utilisateur*, double>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
-		it->second -= montantReparti;
+	//On soustrait le montant reparti à tous les comptes
+	for(map<Utilisateur*,double>::iterator it = conteneur_.begin();it!=conteneur_.end();++it)
+			it->second -= montantReparti;
 }
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
@@ -74,9 +80,9 @@ pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 	
 	//Construction d'une paire contenant les premiers �l�ments de la liste
-	pair<Utilisateur*, double> paireMin = make_pair(conteneur_.begin()->first, conteneur_.begin()->second);
+	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
 	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
-		if (it->second < paireMin.second) {
+		if (it->second > paireMin.second) {
 			paireMin.first = it->first;
 			paireMin.second = it->second;
 		}

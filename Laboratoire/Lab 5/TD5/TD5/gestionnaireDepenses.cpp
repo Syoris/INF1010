@@ -1,8 +1,12 @@
 #include "gestionnaireDepenses.h"
 
+#include <algorithm>
+#include <functional>
 
 // Constructeurs
-GestionnaireDepenses::GestionnaireDepenses(){}
+GestionnaireDepenses::GestionnaireDepenses():GestionnaireGenerique() {
+
+}
 
 //GestionnaireDepenses::GestionnaireDepenses(const GestionnaireDepenses& gestionnaireDepenses){
 //	for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
@@ -28,6 +32,7 @@ GestionnaireDepenses::GestionnaireDepenses(){}
 double GestionnaireDepenses::getTotalDepenses() const
 {
 	double totalDepenses = 0;
+	
 	for (vector<Depense*>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++) {
 		totalDepenses += (*it)->getMontant();
 	}
