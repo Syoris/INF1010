@@ -3,11 +3,11 @@
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardie
 *******************************************/
+#ifndef FONCTEUR
+#define FONCTEUR
 
 #include <map>
 #include <utility>
-
-#include "groupe.h"
 
 /*
 	Foncteur AjouterDepense
@@ -68,9 +68,11 @@ class FoncteurIntervalle {
 public:
 	FoncteurIntervalle(double borneInf, double borneSup) :borneInf_(borneInf), borneSup_(borneSup) {};
 	bool operator()(pair<Utilisateur*, double> pair) {
-		return((pair.second > borneInf_ && pair.second < borneSup_) ? true : false);
+		return((pair.second >= borneInf_ && pair.second <= borneSup_) ? true : false);
 	};
 
 private:
 	double borneInf_, borneSup_;
 };
+
+#endif

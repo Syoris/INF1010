@@ -43,7 +43,7 @@ public:
 	void modifierBalanceFrais(double montant);
 
 	Utilisateur& operator+=(Depense* depense);
-	virtual void print(ostream& os) const = 0;
+	virtual void print(ostream& os) const =0;
 	
 	// Methode d'affichage
 	friend ostream& operator<<(ostream& os, const Utilisateur& user);

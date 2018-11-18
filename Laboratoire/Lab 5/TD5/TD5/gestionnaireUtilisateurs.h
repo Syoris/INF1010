@@ -4,11 +4,17 @@
 * Auteur: Ryan Hardie
 *******************************************/
 
-#pragma once
+#ifndef GESTIONNAIRE_UTILISATEURS_H
+#define GESTIONNAIRE_UTILISATEURS_H
 
 #include "utilisateur.h"
 #include "gestionnaireGenerique.h"
+#include "foncteur.h"
+
+#include <algorithm>
+#include <map>
 #include <vector>
+#include <functional>
 
 class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*, double>, map<Utilisateur*,double>, AjouterUtilisateur> { 
 public:
@@ -18,7 +24,7 @@ public:
 	//GestionnaireUtilisateurs(const GestionnaireUtilisateurs&);
 
 	// Destructeur TODO: Nécessaire?
-	//~GestionnaireUtilisateurs();
+	~GestionnaireUtilisateurs() {};
 	// Surcharge de l'operator=
 	//GestionnaireUtilisateurs& operator=(const GestionnaireUtilisateurs&);
 
@@ -39,3 +45,5 @@ public:
 
 	GestionnaireUtilisateurs& setCompte(pair<Utilisateur*, double> p);
 };
+
+#endif

@@ -4,17 +4,9 @@
 * Auteur: Ryan Hardi
 *******************************************/
 #include "gestionnaireUtilisateurs.h"
-#include "utilisateurPremium.h"
-#include "utilisateurRegulier.h"
 
-//#include "gestionnaireUtilisateurs.h"
-//#include "utilisateurPremium.h"
-//#include "utilisateurRegulier.h"
-//#include "algorithm"
-#include "functional"
-#include "foncteur.h"
+using namespace std;
 using namespace std::placeholders;
-
 
 //Constructeurs
 GestionnaireUtilisateurs::GestionnaireUtilisateurs() :GestionnaireGenerique() {};
@@ -52,9 +44,9 @@ bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
 	return existe;
 }
 
-// TODO
+
 void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
-	double montantReparti = montant/getNombreElements();
+	double montantReparti = montant/conteneur_.size();
 	
 	//On ajoute le montant au compte de l'utilisateur qui a payé
 	conteneur_[payePar] += montant;
@@ -82,7 +74,7 @@ pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 	//Construction d'une paire contenant les premiers �l�ments de la liste
 	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
 	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
-		if (it->second > paireMin.second) {
+		if (it->second < paireMin.second) {
 			paireMin.first = it->first;
 			paireMin.second = it->second;
 		}
@@ -91,9 +83,11 @@ pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 }
 
 Utilisateur* GestionnaireUtilisateurs::getUtilisateurSuivant(Utilisateur* utilisateur, double montant) const {
-	map<Utilisateur*,double>::const_iterator it = find_if(conteneur_.begin(), conteneur_.end(), bind(equal_to<Utilisateur>(), _1, utilisateur));
+	pair<Utilisateur*, double> paireATrouver = make_pair(utilisateur, montant);
+	map<Utilisateur*,double>::const_iterator it = find_if(conteneur_.begin(), conteneur_.end(), bind(equal_to<pair<Utilisateur*,double>>(), _1, paireATrouver));
 	it++;
 	return it->first;
+
 }
 
 vector<pair<Utilisateur*, double>> GestionnaireUtilisateurs::getUtilisateursEntre(double borneInf, double borneSup) const {
@@ -104,4 +98,5 @@ vector<pair<Utilisateur*, double>> GestionnaireUtilisateurs::getUtilisateursEntr
 
 GestionnaireUtilisateurs& GestionnaireUtilisateurs::setCompte(pair<Utilisateur*, double> p) {
 	conteneur_[p.first] = p.second;
+	return *this;
 }

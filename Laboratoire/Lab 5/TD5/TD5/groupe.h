@@ -7,10 +7,8 @@
 #ifndef GROUPE_H
 #define GROUPE_H
 
-#include <string>
-#include <vector>
-#include <algorithm>
-
+#include "gestionnaireDepenses.h"
+#include "gestionnaireUtilisateurs.h"
 #include "depense.h"
 #include "utilisateurPremium.h"
 #include "utilisateurRegulier.h"
@@ -18,8 +16,10 @@
 #include "transfertPaypal.h"
 #include "foncteur.h"
 
-#include "gestionnaireDepenses.h"
-#include "gestionnaireUtilisateurs.h"
+
+#include <vector>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -42,8 +42,8 @@ public:
 	map<Utilisateur*, double> getUtilisateurs() const;
 
 	// Ajouté :
-	GestionnaireUtilisateurs* getGestionnaireUtilisateurs();
-	GestionnaireDepenses* getGestionnaireDepenses();
+	GestionnaireUtilisateurs* getGestionnaireUtilisateurs() const;
+	GestionnaireDepenses* getGestionnaireDepenses() const;
 
 	// Methodes de modification
 	void setNom(const string& nom);
@@ -61,8 +61,7 @@ public:
 private:
 	string nom_;
 	vector<Transfert*> transferts_;
-
-	// Ajouté :
+	
 	GestionnaireUtilisateurs* gestionnaireUtilisateurs_;
 	GestionnaireDepenses* gestionnaireDepenses_;
 };

@@ -1,7 +1,6 @@
+
 #include "gestionnaireDepenses.h"
 
-#include <algorithm>
-#include <functional>
 
 // Constructeurs
 GestionnaireDepenses::GestionnaireDepenses():GestionnaireGenerique() {
