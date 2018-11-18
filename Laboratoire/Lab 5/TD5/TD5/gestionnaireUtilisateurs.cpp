@@ -3,34 +3,28 @@
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardi
 *******************************************/
+#include <functional>
+#include <iterator>
 #include "gestionnaireUtilisateurs.h"
-#include "utilisateurPremium.h"
-#include "utilisateurRegulier.h"
 
-//#include "gestionnaireUtilisateurs.h"
-//#include "utilisateurPremium.h"
-//#include "utilisateurRegulier.h"
-//#include "algorithm"
-#include "functional"
-#include "foncteur.h"
 using namespace std::placeholders;
 
 
 //Constructeurs
 GestionnaireUtilisateurs::GestionnaireUtilisateurs() :GestionnaireGenerique() {};
 
-GestionnaireUtilisateurs::GestionnaireUtilisateurs(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
-	for_each(gestionnaireUtilisateurs.conteneur_.begin(), gestionnaireUtilisateurs.conteneur_.end(), AjouterUtilisateur(conteneur_));
-}
-
-GestionnaireUtilisateurs::~GestionnaireUtilisateurs() {
-	for (map<Utilisateur*, double>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
-		delete it->first;
-}
-
-GestionnaireUtilisateurs& GestionnaireUtilisateurs::operator=(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
-
-}
+//GestionnaireUtilisateurs::GestionnaireUtilisateurs(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
+//	for_each(gestionnaireUtilisateurs.conteneur_.begin(), gestionnaireUtilisateurs.conteneur_.end(), AjouterUtilisateur(conteneur_));
+//}
+//
+//GestionnaireUtilisateurs::~GestionnaireUtilisateurs() {
+//	for (map<Utilisateur*, double>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
+//		delete it->first;
+//}
+//
+//GestionnaireUtilisateurs& GestionnaireUtilisateurs::operator=(const GestionnaireUtilisateurs& gestionnaireUtilisateurs) {
+//
+//}
 
 
 
@@ -43,18 +37,24 @@ vector<double> GestionnaireUtilisateurs::getComptes() const {
 }
 
 bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
-	bool existe = false;
-	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end() && !existe; it++) {
+	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++) {
 		if ((*it).first == utilisateur) {
-			existe = true;
+			return true;
 		}
 	}
-	return existe;
+	return false;
 }
 
 // TODO
 void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
-
+	
+	//On trouve le montant reparti.
+	double montantReparti = montant / getNombreElements();
+	//On ajoute le montant au compte de l'utilisateur qui a payé.
+	conteneur_[payePar] += montant;
+	//On soustrait le montant reparti à tous les comptes.
+	for (map<Utilisateur*, double>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
+		it->second -= montantReparti;
 }
 
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
@@ -74,9 +74,9 @@ pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMax() const {
 pair<Utilisateur*, double>& GestionnaireUtilisateurs::getMin() const {
 	
 	//Construction d'une paire contenant les premiers �l�ments de la liste
-	pair<Utilisateur*, double> paireMin = make_pair(getConteneur().begin()->first, getConteneur().begin()->second);
+	pair<Utilisateur*, double> paireMin = make_pair(conteneur_.begin()->first, conteneur_.begin()->second);
 	for (map<Utilisateur*, double>::const_iterator it = conteneur_.begin(); it != conteneur_.end(); it++)
-		if (it->second > paireMin.second) {
+		if (it->second < paireMin.second) {
 			paireMin.first = it->first;
 			paireMin.second = it->second;
 		}

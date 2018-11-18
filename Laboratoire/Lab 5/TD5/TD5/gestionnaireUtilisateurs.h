@@ -3,24 +3,24 @@
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardie
 *******************************************/
-
 #pragma once
+#include <utility>
 
 #include "utilisateur.h"
 #include "gestionnaireGenerique.h"
-#include <vector>
 
-class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*, double>, map<Utilisateur*,double>, AjouterUtilisateur> { 
+
+class GestionnaireUtilisateurs: public GestionnaireGenerique<Utilisateur*, pair<Utilisateur*, double>, map<Utilisateur*, double>, AjouterUtilisateur> {
 public:
 	// Constructeur
 	GestionnaireUtilisateurs();
 	// TODO : Par copie nécessaire?
-	GestionnaireUtilisateurs(const GestionnaireUtilisateurs&);
+	//GestionnaireUtilisateurs(const GestionnaireUtilisateurs&);
 
 	// Destructeur TODO: Nécessaire?
-	~GestionnaireUtilisateurs();
+	//~GestionnaireUtilisateurs();
 	// Surcharge de l'operator=
-	GestionnaireUtilisateurs& operator=(const GestionnaireUtilisateurs&);
+	//GestionnaireUtilisateurs& operator=(const GestionnaireUtilisateurs&);
 
 
 	vector<double> getComptes() const;
