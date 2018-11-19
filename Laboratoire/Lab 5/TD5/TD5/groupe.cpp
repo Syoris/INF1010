@@ -36,6 +36,27 @@ Groupe::~Groupe() {
 	delete gestionnaireUtilisateurs_;
 }
 
+Groupe& Groupe::operator=(const Groupe& groupe) {
+	if (this != &groupe) {
+		vector<Depense*> depenses = gestionnaireDepenses_->getConteneur();
+		for (auto it = depenses.begin(); it != depenses.end(); it++) {
+			delete *it;
+		}
+		for (auto it = transferts_.begin(); it != transferts_.end(); it++) {
+			delete *it;
+		}
+
+		delete gestionnaireDepenses_;
+		delete gestionnaireUtilisateurs_;
+
+		gestionnaireDepenses_ = new GestionnaireDepenses(*groupe.gestionnaireDepenses_);
+		gestionnaireUtilisateurs_ = new GestionnaireUtilisateurs(*groupe.gestionnaireUtilisateurs_);
+		nom_ = groupe.nom_;
+		transferts_ = groupe.transferts_;
+	}
+	return *this;
+}
+
 // Methodes d'acces
 string Groupe::getNom() const {
 	return nom_;

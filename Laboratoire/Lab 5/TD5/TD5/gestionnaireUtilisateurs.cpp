@@ -30,7 +30,6 @@ bool GestionnaireUtilisateurs::estExistant(Utilisateur* utilisateur) const {
 	return existe;
 }
 
-
 void GestionnaireUtilisateurs::mettreAJourComptes(Utilisateur* payePar, double montant) {
 	double montantReparti = montant/conteneur_.size();
 	
