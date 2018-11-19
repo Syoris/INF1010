@@ -2,6 +2,8 @@
 * Titre: Travail pratique #5 - foncteur.h
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardie
+* Édité par Charles Sirois et Patrick Leclerc
+* Fichier contenant les foncteurs utilisés lors du TP5
 *******************************************/
 #ifndef FONCTEUR
 #define FONCTEUR

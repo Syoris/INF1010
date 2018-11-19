@@ -1,6 +1,6 @@
 /********************************************
 * Titre: Travail pratique #5 - main.cpp
-* Date: 4 nonvembre 2018
+* Date: 19 nonvembre 2018
 * Auteur: Wassim Khene & Ryan Hardie
 *******************************************/
 
@@ -175,17 +175,10 @@ int main() {
 	tests.push_back(groupe1->getDepenses().size() == 1);
 
 	// Test 18: modification des comptes
-	// TODO fonctionne pas avec l'ordre
-
-	// Test sans l'ordre
 	tests.push_back(groupe1->getGestionnaireUtilisateurs()->getConteneur()[up1] == 150
 		&& groupe1->getComptes()[1] == -30);
-	// --------------------------------------------------------------------------------------------------------------------------------------------
+	
 
-	// Test avec l'ordre
-	//tests.push_back(groupe1->getComptes()[0] == 150
-	//	&& groupe1->getComptes()[1] == -30);
-	// --------------------------------------------------------------------------------------------------------------------------------------------
 
 	groupe1->ajouterDepense(360, up4, "d2")
 		.ajouterDepense(240, up3, "d3")
@@ -197,20 +190,6 @@ int main() {
 		.ajouterDepense(180, up1, "d9");
 
 	// Test 19: bonne valeurs pour les comptes
-	// TODO Fonctionne pas avec l'ordre de nos comptes... Le vecteur est pas classé en ordre d'insertion
-	
-	// Test avec l'ordre
-
-	//tests.push_back(groupe1->getComptes()[0] == 20
-	//	&& groupe1->getComptes()[1] == -100
-	//	&& groupe1->getComptes()[2] == 20
-	//	&& groupe1->getComptes()[3] == -280
-	//	&& groupe1->getComptes()[4] == 380
-	//	&& groupe1->getComptes()[5] == -40
-	//	&& groupe1->getTotalDepenses() == 2040);
-	// --------------------------------------------------------------------------------------------------------------------------------------------
-
-	// Test sans l'ordre
 	tests.push_back(groupe1->getGestionnaireUtilisateurs()->getConteneur()[up1] == 20
 		&& groupe1->getGestionnaireUtilisateurs()->getConteneur()[up3] == -100
 		&& groupe1->getGestionnaireUtilisateurs()->getConteneur()[up4] == 20
@@ -233,20 +212,8 @@ int main() {
 	// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 	// Test 22: verification des transferts
-	// TODO marche pas avec ordre
 	groupe1->equilibrerComptes();
 
-	// Test avec ordre
-	//tests.push_back(groupe1->getTransferts().size() == 4
-	//	&& groupe1->getComptes()[0] == 0
-	//	&& groupe1->getComptes()[1] == 0
-	//	&& groupe1->getComptes()[2] == 0
-	//	&& groupe1->getComptes()[3] == 0
-	//	&& groupe1->getComptes()[4] == 0
-	//	&& groupe1->getComptes()[5] == 0);
-	// ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-	// Test sans ordre
 	tests.push_back(groupe1->getTransferts().size() == 4
 		&& groupe1->getGestionnaireUtilisateurs()->getConteneur()[up1] == 0
 		&& groupe1->getGestionnaireUtilisateurs()->getConteneur()[up3] == 0
@@ -277,7 +244,6 @@ int main() {
 		&& ur3->getBalance() == 2);
 
 	// TEST 30 : verification getUtilisateurSuivant
-	// TODO : Décommenter ce test pour pouvoir tester la méthode GetUtilisateurSuivant ----------------
 	tests.push_back(groupe1->getGestionnaireUtilisateurs()->getUtilisateurSuivant(up1, 0) == up3);
 	// ------------------------------------------------------------------------------------------------
 	

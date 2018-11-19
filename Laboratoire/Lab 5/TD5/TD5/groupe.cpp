@@ -177,7 +177,7 @@ void Groupe::equilibrerComptes() {
 		if (-paireMin.second == paireMax.second) {
 			count++;
 		}
-		if (count >= gestionnaireUtilisateurs_->getConteneur().size() - 1) {
+		if (count >= gestionnaireUtilisateurs_->getNombreElements() - 1) {
 			calcul = false;
 		}
 	}

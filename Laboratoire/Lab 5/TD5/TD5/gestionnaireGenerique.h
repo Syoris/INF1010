@@ -2,6 +2,8 @@
 * Titre: Travail pratique #5 - gestionnaireGenerique.h
 * Date: 4 novembre 2018
 * Auteur: Ryan Hardie
+* Édité par Charles Sirois et Patrick Leclerc
+* Classe d'un utilisateur générique
 *******************************************/
 #ifndef GESTIONNAIRE_GENERIQUE_H
 #define GESTIONNAIRE_GENERIQUE_H
@@ -14,17 +16,23 @@
 template<typename T, typename D, typename C, typename FoncteurAjouter>
 class GestionnaireGenerique {
 public:
-
+	//Retourne le conteneur de type C de la classe
 	C getConteneur() const{
 		return conteneur_;
 	};
+
+	//Ajoute le type T au conteneur de type C
 	void ajouter(T t) {
 		FoncteurAjouter f(conteneur_);
 		conteneur_ = f(t);
 	};
+
+	//Retourne le nombre d'éléments dans le conteneur_
 	int getNombreElements() const {
 		return conteneur_.size();
 	};
+
+	// Retourne l'élément de type D à la position i du conteneur_
 	D getElementParIndex(int i) const {
 		return conteneur_[i];
 	};

@@ -1,7 +1,9 @@
 /********************************************
 * Titre: Travail pratique #5 - groupe.h
 * Date: 4 novembre 2018
+* Modifié le : 18 novembre 2018
 * Auteur: Ryan Hardie
+* Édité par Charles Sirois et Patrick Leclerc
 *******************************************/
 
 #ifndef GROUPE_H

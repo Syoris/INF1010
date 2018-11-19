@@ -1,3 +1,10 @@
+/********************************************
+* Titre: Travail pratique #5 - gestionnaireDepenses.cpp
+* Date: 18 novembre 2018
+* Auteur: Ryan Hardie
+* Édité par Charles Sirois et Patrick Leclerc
+* Implémentation d'un gestionnaireDepenses
+*******************************************/
 
 #include "gestionnaireDepenses.h"
 
@@ -7,27 +14,7 @@ GestionnaireDepenses::GestionnaireDepenses():GestionnaireGenerique() {
 
 }
 
-//GestionnaireDepenses::GestionnaireDepenses(const GestionnaireDepenses& gestionnaireDepenses){
-//	for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
-//}
-
-
-// TODO : Vérifier si on a besoin de delete un vecteur? Le delete devrait se faire ou le new est fait
-//GestionnaireDepenses::~GestionnaireDepenses() {
-//	for (vector<Depense*>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
-//		delete *it;
-//}
-
-//GestionnaireDepenses& GestionnaireDepenses::operator=(const GestionnaireDepenses& gestionnaireDepenses) {
-//	if (this != &gestionnaireDepenses) {
-//		for (vector<Depense*>::iterator it = conteneur_.begin(); it != conteneur_.end(); ++it)
-//			delete *it;
-//		this->conteneur_.clear();
-//		for_each(gestionnaireDepenses.conteneur_.begin(), gestionnaireDepenses.conteneur_.end(), AjouterDepense(conteneur_));
-//	}
-//	return *this;
-//}
-
+// Méthode d'accès
 double GestionnaireDepenses::getTotalDepenses() const
 {
 	double totalDepenses = 0;
