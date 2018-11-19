@@ -1,10 +1,7 @@
 /********************************************
 * Titre: Travail pratique #5 - groupe.cpp
 * Date: 4 novembre 2018
-* Modifié le : 18 novembre 2018
 * Auteur: Ryan Hardie
-* Édité par Charles Sirois et Patrick Leclerc
-* Implémentation d'un groupe
 *******************************************/
 
 #include "groupe.h"
