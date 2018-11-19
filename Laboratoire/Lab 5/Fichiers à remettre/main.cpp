@@ -285,6 +285,5 @@ int main() {
 
 	delete uptest;
 
-	system("pause");
 	return 0;
 }
